@@ -55,14 +55,27 @@ It also supports various functions and queries.
 - main.py
     - This file is where we execute the entire system 
 
-# Storage path setup:
-- The database storage path used in the project was local to the developer. The original root directory path was "/Users/Aven/Desktop/myDB".
-- The folder storing external dataset is "/myDB/External"
-- Need to first build these path to be able to run the code.
+# System Setup:
+- Install tabulate
+```bash
+pip3 install tabulate
+```
+- Install ijson
+```bash
+pip3 install ijson
+```
+- Execute main.py
+```bash
+python3 main.py
+```
+- root storage directory myDB will be automatically created under the current working directory
 
 # Project Qeuries Sample Command
 ```bash
-Specify database when prompted (y/n)
+Specify database when prompted
+- any name (db1, db2, db3...)
+When ask (yes/no)
+- yes
 ```
 
 Step1: Simple queries on self created dataset
@@ -134,9 +147,8 @@ Drop:
 Step2: Imported Dataset
 ```bash
 Load:
-- load shop1 '/Users/Aven/Desktop/myDB/External/customer_shopping_data.csv'
-  (Should change the path according to different setup)
-- load shop2 '/Users/Aven/Desktop/myDB/External/customer_shopping_data2.csv'
+- load shop1 'External/customer_shopping_data.csv'
+- load shop2 'External/customer_shopping_data2.csv'
 - show tables
 
 Show:
@@ -181,29 +193,36 @@ Delete:
 - delete ON shop1 IF gender = M
 
 Drop:
-drop table shop1
+- drop table shop1
+- drop table shop2
+
+Exit:
+- exit()
 ```
 
 
 NoSQL Database demo:
+open the NoSQL Database
+
 Step1: schedules dataset
 ```bash
 Load:
-- load schedules '/Users/Aven/Desktop/myDB_NoSQL/External/schedules.json'
-  (Should change the path according to different setup)
+- load schedules 'External/schedules.json'
 - view tables
 
 View:
 - view table schedules
 
-SHOW:
+Projection (SHOW):
 - SHOW everything IN schedules 
 - SHOW station_name train_name train_number IN schedules
+
+FILTERING:
 - SHOW everything IN schedules IF station_name = Mhow
 
 Update:
 - update ON schedules SET arrival = tomorrow IF arrival = None
-SHOW everything IN schedules
+- SHOW everything IN schedules
 
 Delete:
 - SHOW everything IN schedules IF departure = None
@@ -216,9 +235,9 @@ Drop:
 Step2: country, city, countrylanguage datasets:
 ```bash
 Load: 
-- load city '/Users/Aven/Desktop/myDB_NoSQL/External/city.json'
-- load country '/Users/Aven/Desktop/myDB_NoSQL/External/countryf.json'
-- load countrylanguage '/Users/Aven/Desktop/myDB_NoSQL/External/countrylanguage.json'
+- load city 'External/city.json'
+- load country 'External/countryf.json'
+- load countrylanguage 'External/countrylanguage.json'
 
 View:
 - view tables
@@ -226,7 +245,7 @@ View:
 - view table country
 - view table countrylanguage
 
-SHOW:
+Projection (SHOW):
 - SHOW everything IN city 
 - SHOW Population Name LifeExpectancy Continent IN country
 
@@ -242,4 +261,7 @@ JOIN:
 Aggregation and GroupBy:
 - SHOW COUNT OF Continent IN country
 - SHOW GNP SUM OF Continent IN country 
+
+Exit:
+- exit()
 ```
